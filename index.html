@@ -3,23 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Paketi Aç</title>
+    <title>Minecraft ile Aç</title>
 </head>
 <body>
-    <h2>Minecraft Paketi Aç</h2>
-    <p>Aşağıdaki butona tıklayarak paketi Minecraft'ta açabilirsin:</p>
+    <h2>Minecraft ile Dosya Aç</h2>
+    <p>Aşağıdaki butona tıklayarak cihazından bir `.mcpack` dosyası seç ve Minecraft ile aç:</p>
     
-    <button onclick="downloadAndOpen()">Minecraft'ta Aç</button>
+    <!-- Dosya seçme input -->
+    <input type="file" id="fileInput" accept=".mcpack">
+    
+    <!-- Dosya açma butonu -->
+    <button onclick="openWithMinecraft()">Birlikte Aç</button>
 
     <script>
-        function downloadAndOpen() {
-            // Önce dosyayı indir
-            window.location.href = "https://kerem4838.github.io/importmcpackandroid/dosya.mcpack";
+        function openWithMinecraft() {
+            const fileInput = document.getElementById("fileInput");
             
-            // 3 saniye sonra Minecraft'ı açmaya çalış
-            setTimeout(() => {
-                window.location.href = "minecraft://?import=https://kerem4838.github.io/importmcpackandroid/dosya.mcpack";
-            }, 3000);
+            // Dosya seçildi mi kontrol et
+            if (fileInput.files.length === 0) {
+                alert("Lütfen bir .mcpack dosyası seçin!");
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const fileURL = URL.createObjectURL(file); // Dosya URL'si oluşturuluyor
+            
+            // Dosyayı indir
+            const link = document.createElement("a");
+            link.href = fileURL;
+            link.download = file.name;
+            document.body.appendChild(link);
+            link.click();  // Dosya indirilmeye başlanacak
+            document.body.removeChild(link);
+
+            // Minecraft için talimat ver
+            alert("Dosya indirildi! Minecraft ile açmak için indirilen dosyayı açın.");
         }
     </script>
 </body>
