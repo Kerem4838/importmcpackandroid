@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Paketi Aç</title>
+</head>
+<body>
+    <h2>Minecraft Paketi Aç</h2>
+    <p>Aşağıdaki butona tıklayarak paketi Minecraft'ta açabilirsin:</p>
+    <button onclick="openMinecraft()">Minecraft'ta Aç</button>
+
+    <script>
+        function openMinecraft() {
+            window.location.href = "minecraft://?import=https://seninsiten.com/dosya.mcpack";
+            setTimeout(() => {
+                alert("Minecraft açılmadıysa, tarayıcınız desteklemiyor olabilir.");
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
