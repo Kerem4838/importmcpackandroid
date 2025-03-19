@@ -9,13 +9,16 @@
     <h2>Minecraft Paketi Aç</h2>
     <p>Aşağıdaki butona tıklayarak paketi Minecraft'ta açabilirsin:</p>
     
-    <button onclick="openMinecraft()">Minecraft'ta Aç</button>
+    <button onclick="downloadAndOpen()">Minecraft'ta Aç</button>
 
     <script>
-        function openMinecraft() {
-            window.location.href = "minecraft://?import=https://kerem4838.github.io/importmcpackandroid/dosya.mcpack";
+        function downloadAndOpen() {
+            // Önce dosyayı indir
+            window.location.href = "https://kerem4838.github.io/importmcpackandroid/dosya.mcpack";
+            
+            // 3 saniye sonra Minecraft'ı açmaya çalış
             setTimeout(() => {
-                alert("Minecraft açılmadıysa, tarayıcınız desteklemiyor olabilir.");
+                window.location.href = "minecraft://?import=https://kerem4838.github.io/importmcpackandroid/dosya.mcpack";
             }, 3000);
         }
     </script>
